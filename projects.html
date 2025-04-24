@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research | Ada Carter</title>
+    <meta name="description" content="Ada Carter's deep sea research projects and innovations in marine biology and computer vision.">
+    <meta name="keywords" content="Ada Carter, Deep Sea Biology, Research, Computer Vision, Oceanography, Marine Biology">
+    <meta name="author" content="Ada Carter">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Research | Ada Carter">
+    <meta property="og:description" content="Deep sea research projects by Ada Carter">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adacarter.org/projects">
+    <link rel="canonical" href="https://adacarter.org/projects">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5a7247; /* Moss green */
+            --secondary: #88b2cc;
+            --accent: #47603a; /* Darker moss green */
+            --text: #343a40;
+            --light-bg: #f8f9fa;
+            --light-accent: #eef2ea; /* Light moss green background */
+            --border: #dee2e6;
+            --shell-start: #5a7247; /* Moss green for shell gradient start */
+            --shell-end: #f7cad0; /* Light pink for shell gradient end */
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Lora', Georgia, serif;
+            background: var(--light-bg);
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* Search Functionality Styles */
+        .search-container {
+            margin: 2rem auto 0;
+            max-width: 700px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .search-input-wrapper {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 20px;
+            border: 2px solid var(--accent);
+            border-radius: 30px;
+            font-size: 1rem;
+            color: var(--text);
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            font-family: 'Lora', Georgia, serif;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .search-icon-button {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary);
+            border: none;
+            cursor: pointer;
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            width: 24px;
+            height: 24px;
+        }
+
+        .search-icon-button:hover {
+            background: var(--accent);
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-icon-button svg {
+            width: 14px;
+            height: 14px;
+            stroke-width: 2.5;
+        }
+
+        .filter-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-top: 12px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .dropdown-button {
+            background-color: var(--light-accent);
+            color: var(--accent);
+            padding: 8px 16px;
+            border: 1px solid var(--accent);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+            font-family: 'Lora', Georgia, serif;
+        }
+
+        .dropdown-button:hover {
+            background-color: #e8eee2;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px;
+            border: 1px solid var(--border);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .dropdown-content.show {
+            display: block;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .dropdown-content .tag-pill {
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            border-radius: 6px;
+            margin: 4px;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        .dropdown-content .tag-pill:hover {
+            filter: brightness(0.95);
+        }
+        
+        /* Color-coded tag pills */
+        .tag-pill.computer-vision {
+            background-color: rgba(108, 117, 125, 0.15);
+            color: rgb(75, 85, 99);
+        }
+        
+        .tag-pill.machine-learning {
+            background-color: rgba(165, 96, 247, 0.15);
+            color: rgb(126, 34, 206);
+        }
+        
+        .tag-pill.deep-sea {
+            background-color: rgba(79, 70, 229, 0.15);
+            color: rgb(67, 56, 202);
+        }
+        
+        .tag-pill.hydrothermal {
+            background-color: rgba(5, 150, 105, 0.15);
+            color: rgb(4, 120, 87);
+        }
+        
+        .tag-pill.data-viz {
+            background-color: rgba(14, 165, 233, 0.15);
+            color: rgb(2, 132, 199);
+        }
+        
+        .tag-pill.bioinformatics {
+            background-color: rgba(79, 70, 229, 0.15);
+            color: rgb(67, 56, 202);
+        }
+        
+        .tag-pill.climate {
+            background-color: rgba(239, 68, 68, 0.15);
+            color: rgb(185, 28, 28);
+        }
+        
+        .tag-pill.ecology {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: rgb(5, 150, 105);
+        }
+        
+        /* Active tag styling */
+        .tag-pill.active {
+            filter: brightness(0.9);
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Active filters display */
+        .active-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+            justify-content: center;
+        }
+        
+        .active-filter-tag {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            background-color: var(--light-accent);
+            color: var(--accent);
+        }
+        
+        .remove-filter {
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+        
+        .remove-filter:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden-project {
+            display: none;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem 0;
+            font-style: italic;
+            color: var(--text);
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 768px) {
+            .filter-tags {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-label {
+                margin-bottom: 5px;
+            }
+            
+            .search-container {
+                max-width: 90%;
+            }
+        }
+
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--primary);
+            font-size: 1.2rem;
+            z-index: 1000;
+            font-style: italic;
+        }
+
+        header {
+            padding: 1.5rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-bottom: 4px solid var(--accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after,
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        .nautilus-canvas {
+            display: none; /* Hide the nautilus canvas on this page */
+        }
+
+        /* Projects Container */
+        .projects-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 7rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 5;
+        }
+
+        .projects-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .projects-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            letter-spacing: 1px;
+            font-weight: 500;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .projects-header p {
+            font-size: 1.1rem;
+            color: var (--text);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Project Grid (Modified) */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Article Card Styling */
+        .article-wrapper {
+            width: 100%;
+            transition: 0.15s all ease-in-out;
+            border-radius: 10px;
+            padding: 5px;
+            border: 4px solid transparent;
+            cursor: pointer;
+            background-color: white;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-wrapper:hover {
+            box-shadow: 10px 10px 0 var(--shell-end), 20px 20px 0 var(--primary);
+            border-color: var(--accent);
+            transform: translate(-20px, -20px);
+        }
+
+        .article-wrapper:active {
+            box-shadow: none;
+            transform: translate(0, 0);
+        }
+
+        .types {
+            gap: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            place-content: flex-start;
+        }
+
+        .rounded-lg {
+            border-radius: 10px;
+        }
+
+        .article-wrapper:hover .project-hover {
+            transform: rotate(-45deg);
+            background-color: var(--light-accent);
+        }
+
+        .project-info {
+            padding-top: 20px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .project-title {
+            font-size: 1.5em;
+            margin: 0;
+            font-weight: 600;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            color: var(--text);
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .flex-pr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .project-type {
+            padding: 0.3em 0.7em;
+            border-radius: 15px;
+            font-size: 12px;
+            letter-spacing: -0.3px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        .project-hover {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            padding: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container-project {
+            width: 100%;
+            height: 180px;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .project-description {
+            font-size: 0.9rem;
+            color: #555;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.5;
+        }
+
+        /* Citation-style metadata */
+        .citation-metadata {
+            margin-top: 4rem;
+            border-top: 1px solid var(--border);
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 992px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+                gap: 2rem;
+            }
+
+            .projects-header h2 {
+                font-size: 1.8rem;
+            }
+
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul {
+                margin-top: 1rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .article-wrapper:hover {
+                box-shadow: 5px 5px 0 var(--shell-end), 10px 10px 0 var(--primary);
+                transform: translate(-10px, -10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="loading" class="loading"></div>
+    
+    <canvas id="nautilus-canvas" class="nautilus-canvas"></canvas>
+    
+    <header>
+        <h1>Ada Carter</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html" class="active">Research</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="projects-container">
+        <div class="projects-header">
+            <h2>Research Projects</h2>
+            <p>My research focuses on applying computer vision and AI techniques to study and preserve deep-sea benthic ecosystems, with a particular interest in hydrothermal vent communities and the adaptations of organisms to extreme environments.</p>
+            
+            <!-- Search Box -->
+            <div class="search-container">
+                <div class="search-input-wrapper">
+                    <input type="text" id="project-search" placeholder="Search by title, description, or tag..." class="search-input">
+                    <button class="search-icon-button" id="search-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="search-results-count"><span id="results-count">12</span> projects found</div>
+                <div class="active-filters" id="active-filters"></div>
+            </div>
+        </div>
+        
+        <div class="projects-grid" id="projects-grid">
+            <!-- Project cards will be dynamically inserted here by JS -->
+        </div>
+        
+        <div class="citation-metadata">
+            Carter, A. (2025).<br>
+            School of Oceanography, University of Washington, Seattle, WA 98195
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const searchInput = document.getElementById('project-search');
+            const resultsCount = document.getElementById('results-count');
+            const projectCards = document.querySelectorAll('.article-wrapper');
+            const projectsGrid = document.querySelector('.projects-grid');
+            const activeFilters = document.getElementById('active-filters');
+        
+            // Dropdown functionality
+            const dropdownButton = document.querySelector('.dropdown-button');
+            const dropdownContent = document.querySelector('.dropdown-content');
+            const tagPills = document.querySelectorAll('.tag-pill');
+        
+            // Track active filters
+            let activeFilterTags = new Set();
+        
+            // Track total projects for display
+            const totalProjects = projectCards.length;
+            resultsCount.textContent = totalProjects;
+        
+            // Toggle dropdown visibility
+            dropdownButton.addEventListener('click', function() {
+            dropdownContent.classList.toggle('show');
+            });
+        
+            // Close dropdown when clicking outside
+            window.addEventListener('click', function(event) {
+            if (!event.target.matches('.dropdown-button') &&
+                !event.target.closest('.dropdown-button') &&
+                !event.target.matches('.tag-pill')) {
+                if (dropdownContent.classList.contains('show')) {
+                dropdownContent.classList.remove('show');
+                }
+            }
+            });
+        
+            // Function to create an active filter tag
+            function createActiveFilterTag(tag) {
+            const filterTag = document.createElement('div');
+            filterTag.className = 'active-filter-tag';
+            filterTag.dataset.tag = tag;
+        
+            // Determine tag color class based on the original pill
+            const originalPill = Array.from(tagPills).find(pill => pill.dataset.tag === tag);
+            if (originalPill) {
+                // Extract color class from the original tag pill
+                const colorClass = Array.from(originalPill.classList)
+                .find(cls => cls !== 'tag-pill' && cls !== 'active');
+        
+                if (colorClass) {
+                filterTag.classList.add(colorClass);
+                }
+            }
+        
+            filterTag.innerHTML = `
+                ${tag}
+                <span class="remove-filter">×</span>
+            `;
+        
+            // Add event listener to remove filter
+            filterTag.querySelector('.remove-filter').addEventListener('click', function(e) {
+                e.stopPropagation();
+                removeFilter(tag);
+            });
+        
+            return filterTag;
+            }
+        
+            // Add a filter tag
+            function addFilter(tag) {
+            if (!activeFilterTags.has(tag)) {
+                activeFilterTags.add(tag);
+                activeFilters.appendChild(createActiveFilterTag(tag));
+                applyFilters();
+            }
+            }
+        
+            // Remove a filter tag
+            function removeFilter(tag) {
+            activeFilterTags.delete(tag);
+            const tagElement = document.querySelector(`.active-filter-tag[data-tag="${tag}"]`);
+            if (tagElement) {
+                tagElement.remove();
+            }
+        
+            // Also remove active class from the dropdown pill
+            const pillElement = document.querySelector(`.tag-pill[data-tag="${tag}"]`);
+            if (pillElement) {
+                pillElement.classList.remove('active');
+            }
+        
+            applyFilters();
+            }
+        
+            // Apply all active filters to projects
+            function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            let visibleProjects = 0;
+        
+            // Remove existing "no results" message if present
+            const existingNoResults = document.querySelector('.no-results');
+            if (existingNoResults) {
+                existingNoResults.remove();
+            }
+        
+            projectCards.forEach(card => {
+                const parent = card.parentElement;
+                const title = card.querySelector('.project-title').textContent.toLowerCase();
+                const description = card.querySelector('.project-description').textContent.toLowerCase();
+                const cardTags = Array.from(card.querySelectorAll('.project-type')).map(tag =>
+                tag.textContent.toLowerCase().replace('•', '').trim()
+                );
+        
+                // Check if card matches search term
+                const matchesSearch = searchTerm === '' ||
+                title.includes(searchTerm) ||
+                description.includes(searchTerm) ||
+                cardTags.some(tag => tag.includes(searchTerm));
+        
+                // Check if card matches active filters
+                let matchesFilters = true;
+                if (activeFilterTags.size > 0) {
+                matchesFilters = Array.from(activeFilterTags).every(filterTag => {
+                    return cardTags.some(tag => tag.toLowerCase().includes(filterTag.toLowerCase()));
+                });
+                }
+        
+                // Update visibility based on combined conditions
+                if (matchesSearch && matchesFilters) {
+                parent.style.display = '';
+                visibleProjects++;
+                } else {
+                parent.style.display = 'none';
+                }
+            });
+        
+            // Update results count
+            resultsCount.textContent = visibleProjects;
+        
+            // Show "no results" message if needed
+            if (visibleProjects === 0) {
+                const noResultsElement = document.createElement('div');
+                noResultsElement.className = 'no-results';
+                noResultsElement.innerHTML = 'No projects found matching your criteria.<br>Try different filters or clear your search.';
+                projectsGrid.appendChild(noResultsElement);
+            }
+            }
+        
+            // Event listener for search input
+            searchInput.addEventListener('input', applyFilters);
+        
+            // Event listeners for tag pills in dropdown
+            tagPills.forEach(pill => {
+            pill.addEventListener('click', function(e) {
+                e.stopPropagation();
+                const tag = this.getAttribute('data-tag');
+        
+                // Toggle active class for visual feedback
+                this.classList.toggle('active');
+        
+                // Add or remove from active filters
+                if (this.classList.contains('active')) {
+                addFilter(tag);
+                } else {
+                removeFilter(tag);
+                }
+            });
+            });
+        
+            // Clear all filters when ESC key is pressed
+            document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                searchInput.value = '';
+        
+                // Clear all active filters
+                activeFilterTags.clear();
+                activeFilters.innerHTML = '';
+        
+                // Remove active class from all tag pills
+                tagPills.forEach(pill => {
+                pill.classList.remove('active');
+                });
+        
+                // Reset project visibility
+                applyFilters();
+            }
+            });
+        });
+            </script>
+    <script src="projects-data.js"></script>
+    <script src="projects.js"></script>
+</body>
+</html>

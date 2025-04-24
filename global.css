@@ -1,0 +1,106 @@
+/* global.css */
+:root {
+    --primary: #5a7247; /* Moss green */
+    --secondary: #88b2cc;
+    --accent: #47603a; /* Darker moss green */
+    --text: #343a40;
+    --light-bg: #f8f9fa;
+    --light-accent: #eef2ea; /* Light moss green background */
+    --border: #dee2e6;
+    --shell-start: #5a7247; /* Moss green for shell gradient start */
+    --shell-end: #f7cad0; /* Light pink for shell gradient end */
+}
+
+body {
+    margin: 0;
+    font-family: 'Lora', Georgia, serif;
+    background: var(--light-bg);
+    color: var(--text);
+    overflow-x: hidden;
+    position: relative;
+    line-height: 1.6;
+}
+
+header {
+    padding: 1.5rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-bottom: 4px solid var(--accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    color: var(--text);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--primary);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    width: 100%;
+}
+
+.nautilus-canvas {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1rem;
+        flex-direction: column;
+        text-align: center;
+    }
+    nav ul {
+        margin-top: 1rem;
+    }
+    nav ul li {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
